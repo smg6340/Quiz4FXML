@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
+    <children>
+        <Button fx:id="button" layoutX="126" layoutY="90" onAction="#handleButtonAction" text="Click Me!" />
+        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
+      <Button fx:id="createButton" layoutX="14.0" layoutY="23.0" mnemonicParsing="false" onAction="#createEntry" text="Create" />
+      <Button fx:id="deleteButton" layoutX="254.0" layoutY="23.0" mnemonicParsing="false" onAction="#deleteEntry" text="Delete" />
+      <Button fx:id="readButton" layoutX="14.0" layoutY="161.0" mnemonicParsing="false" onAction="#readEntry" text="Read" />
+      <Button fx:id="updateButton" layoutX="254.0" layoutY="161.0" mnemonicParsing="false" onAction="#updateEntry" text="Update" />
+      <Button fx:id="readByIDButton" layoutX="122.0" layoutY="23.0" mnemonicParsing="false" onAction="#readById" text="Read By ID" />
+      <Button fx:id="readByNameCourseButton" layoutX="77.0" layoutY="161.0" mnemonicParsing="false" onAction="#readByNameCourse" text="Ready By Name and Course" />
+    </children>
+</AnchorPane>
