@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -45,6 +46,18 @@ public class FXMLDocumentController implements Initializable {
 
     @FXML
     private Button readByNameCourseButton;
+    
+     @FXML
+    private Label searchLabel;
+
+    @FXML
+    private Label lastNameLabel;
+
+    @FXML
+    private TextField searchTextField;
+
+    @FXML
+    private Button searchButton;
     
     @FXML
     void createEntry(ActionEvent event) {
@@ -150,6 +163,10 @@ public class FXMLDocumentController implements Initializable {
         staff.setAssignments(assignments);
         // save this staff to database by calling Create operation        
         update(staff);
+    }
+    @FXML
+    void search(ActionEvent event) {
+        System.out.println("Clicked");
     }
     
     @FXML
