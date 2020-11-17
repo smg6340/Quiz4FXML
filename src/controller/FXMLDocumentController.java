@@ -59,6 +59,9 @@ public class FXMLDocumentController implements Initializable {
     private Button searchButton;
     
     @FXML
+    private Button searchAdvancedButton;
+    
+    @FXML
     private TableView<Staff> staffTable;
     @FXML
     private TableColumn<Staff, Integer> staffId;
@@ -219,6 +222,33 @@ public class FXMLDocumentController implements Initializable {
     }
     
     @FXML
+    void searchAdvanced(ActionEvent event) {
+        System.out.println("clicked");
+
+        // getting the name from input box        
+        String lastname = searchTextField.getText();
+
+        // calling a db read operation, readByNameAdvanced
+        List<Staff> allStaff = readByNameAdvanced(lastname);
+
+        // setting table data
+        //setTableData(allStaff);
+        // add an alert
+        if (allStaff == null || allStaff.isEmpty()) {
+
+            // show an alert to inform user 
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog Box");// line 2
+            alert.setHeaderText("ERROR");// line 3
+            alert.setContentText("No staff member matches that query");// line 4
+            alert.showAndWait(); // line 5
+        } else {
+            // setting table data
+            setTableData(allStaff);
+        }
+    }
+    
+    @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
         label.setText("Hello World!");
@@ -270,6 +300,21 @@ public class FXMLDocumentController implements Initializable {
 //needed to add for search feature to work
     public List<Staff> readByName(String lastname) {
         Query query = manager.createNamedQuery("Staff.findByLastname");
+
+        // setting query parameter
+        query.setParameter("lastname", lastname);
+
+        // execute query
+        List<Staff> allStaff = query.getResultList();
+        for (Staff staff : allStaff) {
+            System.out.println(staff.getId() + " " + staff.getLastname()+ " " + staff.getCourse() + " " + staff.getAssignments());
+        }
+
+        return allStaff;
+    }
+    
+    public List<Staff> readByNameAdvanced(String lastname) {
+        Query query = manager.createNamedQuery("Staff.findByNameAdvanced");
 
         // setting query parameter
         query.setParameter("lastname", lastname);

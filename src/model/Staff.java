@@ -19,7 +19,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Staff.findByCourse", query = "SELECT s FROM Staff s WHERE s.course = :course"),
     @NamedQuery(name = "Staff.findByLastname", query = "SELECT s FROM Staff s WHERE s.lastname = :lastname"),
     @NamedQuery(name = "Staff.findByAssignments", query = "SELECT s FROM Staff s WHERE s.assignments = :assignments"),
-    @NamedQuery(name = "Staff.findByNameAndCourse", query = "SELECT s FROM Staff s WHERE s.course = :course and s.lastname = :lastname")})
+    @NamedQuery(name = "Staff.findByNameAndCourse", query = "SELECT s FROM Staff s WHERE s.course = :course and s.lastname = :lastname"),
+    @NamedQuery(name = "Staff.findByNameAdvanced", query = "SELECT s FROM Staff s WHERE  LOWER(s.lastname) LIKE  CONCAT('%', LOWER(:lastname), '%')")})
 public class Staff implements Serializable {
 
     private static final long serialVersionUID = 1L;
