@@ -1,29 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import model.Staff;
 
-/**
- *
- * @author smg6340
- */
 public class FXMLDocumentController implements Initializable {
     
     @FXML
@@ -59,6 +58,36 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button searchButton;
     
+    @FXML
+    private TableView<Staff> staffTable;
+    @FXML
+    private TableColumn<Staff, Integer> staffId;
+    @FXML
+    private TableColumn<Staff, String> staffLastname;
+    @FXML
+    private TableColumn<Staff, String> staffCourse;
+    @FXML
+    private TableColumn<Staff, String> staffAssignments;
+
+    // the observable list of students that is used to insert data into the table
+    private ObservableList<Staff> staffData;
+    
+    // add the proper data to the observable list to be rendered in the table
+    public void setTableData(List<Staff> staffList) {
+
+        // initialize the staffData variable
+        staffData = FXCollections.observableArrayList();
+
+        // add the staff objects to an observable list object for use with the GUI table
+        staffList.forEach(s -> {
+            staffData.add(s);
+        });
+
+        // set the the table items to the data in staffData; refresh the table
+        staffTable.setItems(staffData);
+        staffTable.refresh();
+    }
+     
     @FXML
     void createEntry(ActionEvent event) {
         Scanner input = new Scanner(System.in);
@@ -166,7 +195,27 @@ public class FXMLDocumentController implements Initializable {
     }
     @FXML
     void search(ActionEvent event) {
-        System.out.println("Clicked");
+        System.out.println("clicked");
+
+        // getting the name from input box        
+        String lastname = searchTextField.getText();
+
+        // calling a db read operation, readByName
+        List<Staff> allStaff = readByName(lastname);
+
+        if (allStaff == null || allStaff.isEmpty()) {
+
+            // show an alert to inform user 
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Information Dialog Box");// line 2
+            alert.setHeaderText("ERROR");// line 3
+            alert.setContentText("No staff member matches that name");// line 4
+            alert.showAndWait(); // line 5
+        } else {
+
+            // setting table data
+            setTableData(allStaff);
+        }
     }
     
     @FXML
@@ -216,6 +265,21 @@ public class FXMLDocumentController implements Initializable {
             System.out.println(s.getId() + " " + s.getLastname()+ " " + s.getCourse() + " " + s.getAssignments());
         }
         
+        return allStaff;
+    }
+//needed to add for search feature to work
+    public List<Staff> readByName(String lastname) {
+        Query query = manager.createNamedQuery("Staff.findByLastname");
+
+        // setting query parameter
+        query.setParameter("lastname", lastname);
+
+        // execute query
+        List<Staff> allStaff = query.getResultList();
+        for (Staff staff : allStaff) {
+            System.out.println(staff.getId() + " " + staff.getLastname()+ " " + staff.getCourse() + " " + staff.getAssignments());
+        }
+
         return allStaff;
     }
 //needed to add to ensure delete button would work as intended
@@ -302,6 +366,14 @@ public class FXMLDocumentController implements Initializable {
         // loading data from database
         //database reference: "IntroJavaFXPU"
         manager = (EntityManager) Persistence.createEntityManagerFactory("SabrinaGooptuFXMLPU").createEntityManager();
+        
+        staffId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        staffLastname.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        staffCourse.setCellValueFactory(new PropertyValueFactory<>("Course"));
+        staffAssignments.setCellValueFactory(new PropertyValueFactory<>("Assignments"));
+        //enable row selection
+        // (SelectionMode.MULTIPLE);
+        staffTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     } 
   
     
