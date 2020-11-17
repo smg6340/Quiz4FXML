@@ -36,5 +36,6 @@
       </TableView>
       <Button fx:id="searchAdvancedButton" layoutX="262.0" layoutY="266.0" mnemonicParsing="false" onAction="#searchAdvanced" text="Advanced Search" />
       <Button fx:id="showDetailsButton" layoutX="12.0" layoutY="266.0" mnemonicParsing="false" onAction="#showDetails" text="Show Details" />
+      <Button fx:id="showDetailsInPlaceButton" layoutX="100.0" layoutY="266.0" mnemonicParsing="false" onAction="#showDetailsInPlace" text="Show Details In-Place" />
     </children>
 </AnchorPane>
