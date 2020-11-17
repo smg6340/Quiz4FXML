@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailedModelViewController">
+   <children>
+      <Button fx:id="backToMainButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backToMain" text="Back" />
+      <Label fx:id="detailModelLabel" layoutX="103.0" layoutY="39.0" text="Detailed Model View">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Label fx:id="staffIDLabel" layoutX="141.0" layoutY="160.0" text="Staff ID:">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="lastNameLabel" layoutX="141.0" layoutY="192.0" text="Last Name:">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="profileImage" fitHeight="162.0" fitWidth="201.0" layoutX="200.0" layoutY="238.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="staffIdLabel" layoutX="335.0" layoutY="160.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <Label fx:id="staffLastnameLabel" layoutX="335.0" layoutY="192.0">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

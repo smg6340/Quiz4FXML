@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -8,7 +9,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -18,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -60,6 +65,9 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private Button searchAdvancedButton;
+    
+    @FXML
+    private Button showDetailsButton;
     
     @FXML
     private TableView<Staff> staffTable;
@@ -248,6 +256,35 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
+    @FXML
+    void showDetails(ActionEvent event) throws IOException {
+        System.out.println("clicked");
+
+        
+        // pass currently selected model
+        Staff selectedStaff = staffTable.getSelectionModel().getSelectedItem();
+        
+        // fxml loader
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/DetailedModelView.fxml"));
+
+        // load the ui elements
+        Parent detailedModelView = loader.load();
+
+        // load the scene
+        Scene tableViewScene = new Scene(detailedModelView);
+
+        //access the detailedControlled and call a method
+        DetailedModelViewController detailedControlled = loader.getController();
+
+
+        detailedControlled.initData(selectedStaff);
+
+        // create a new state
+        Stage stage = new Stage();
+        stage.setScene(tableViewScene);
+        stage.show();
+    }
+
     @FXML
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
