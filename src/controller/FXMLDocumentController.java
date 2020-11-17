@@ -75,18 +75,22 @@ public class FXMLDocumentController implements Initializable {
     
     @FXML
     private TableView<Staff> staffTable;
-    @FXML
-    private TableColumn<Staff, Integer> staffId;
+
     @FXML
     private TableColumn<Staff, String> staffLastname;
+    
+    @FXML
+    private TableColumn<Staff, Integer> staffId;
+
     @FXML
     private TableColumn<Staff, String> staffCourse;
+
     @FXML
     private TableColumn<Staff, String> staffAssignments;
 
-    // the observable list of students that is used to insert data into the table
+    // the observable list of allStaff that is used to insert data into the table
     private ObservableList<Staff> staffData;
-    
+
     // add the proper data to the observable list to be rendered in the table
     public void setTableData(List<Staff> staffList) {
 
@@ -98,7 +102,7 @@ public class FXMLDocumentController implements Initializable {
             staffData.add(s);
         });
 
-        // set the the table items to the data in staffData; refresh the table
+        // set the the table items to the data in studentData; refresh the table
         staffTable.setItems(staffData);
         staffTable.refresh();
     }
@@ -488,8 +492,8 @@ public class FXMLDocumentController implements Initializable {
         //database reference: "IntroJavaFXPU"
         manager = (EntityManager) Persistence.createEntityManagerFactory("SabrinaGooptuFXMLPU").createEntityManager();
         
-        staffId.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        staffLastname.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        staffLastname.setCellValueFactory(new PropertyValueFactory<>("Lastname"));
+        staffId.setCellValueFactory(new PropertyValueFactory<>("Id"));
         staffCourse.setCellValueFactory(new PropertyValueFactory<>("Course"));
         staffAssignments.setCellValueFactory(new PropertyValueFactory<>("Assignments"));
         //enable row selection

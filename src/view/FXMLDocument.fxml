@@ -8,34 +8,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="406.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
+<AnchorPane id="AnchorPane" prefHeight="582.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FXMLDocumentController">
     <children>
-        <Button fx:id="button" layoutX="171.0" layoutY="108.0" onAction="#handleButtonAction" text="Click Me!" />
+        <Button fx:id="button" layoutX="244.0" layoutY="95.0" onAction="#handleButtonAction" text="Click Me!" />
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <Button fx:id="createButton" layoutX="18.0" layoutY="23.0" mnemonicParsing="false" onAction="#createEntry" text="Create" />
-      <Button fx:id="deleteButton" layoutX="341.0" layoutY="23.0" mnemonicParsing="false" onAction="#deleteEntry" text="Delete" />
-      <Button fx:id="readButton" layoutX="22.0" layoutY="161.0" mnemonicParsing="false" onAction="#readEntry" text="Read" />
-      <Button fx:id="updateButton" layoutX="339.0" layoutY="161.0" mnemonicParsing="false" onAction="#updateEntry" text="Update" />
-      <Button fx:id="readByIDButton" layoutX="167.0" layoutY="23.0" mnemonicParsing="false" onAction="#readById" text="Read By ID" />
-      <Button fx:id="readByNameCourseButton" layoutX="123.0" layoutY="161.0" mnemonicParsing="false" onAction="#readByNameCourse" text="Ready By Name and Course" />
-      <Label fx:id="searchLabel" layoutX="14.0" layoutY="202.0" text="Search Staff">
+      <Button fx:id="createButton" layoutX="36.0" layoutY="23.0" mnemonicParsing="false" onAction="#createEntry" text="Create" />
+      <Button fx:id="deleteButton" layoutX="435.0" layoutY="23.0" mnemonicParsing="false" onAction="#deleteEntry" text="Delete" />
+      <Button fx:id="readButton" layoutX="40.0" layoutY="161.0" mnemonicParsing="false" onAction="#readEntry" text="Read" />
+      <Button fx:id="updateButton" layoutX="435.0" layoutY="161.0" mnemonicParsing="false" onAction="#updateEntry" text="Update" />
+      <Button fx:id="readByIDButton" layoutX="240.0" layoutY="23.0" mnemonicParsing="false" onAction="#readById" text="Read By ID" />
+      <Button fx:id="readByNameCourseButton" layoutX="196.0" layoutY="161.0" mnemonicParsing="false" onAction="#readByNameCourse" text="Ready By Name and Course" />
+      <Label fx:id="searchLabel" layoutX="32.0" layoutY="212.0" text="Search Staff">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lastNameLabel" layoutX="28.0" layoutY="237.0" text="By Last Name:" />
-      <TextField fx:id="searchTextField" layoutX="117.0" layoutY="233.0" prefHeight="25.0" prefWidth="183.0" text="e.g. Walker" />
-      <Button fx:id="searchButton" layoutX="315.0" layoutY="233.0" mnemonicParsing="false" onAction="#search" text="Search" />
-      <TableView fx:id="staffTable" layoutX="12.0" layoutY="291.0" prefHeight="265.0" prefWidth="381.0">
+      <Label fx:id="lastNameLabel" layoutX="14.0" layoutY="250.0" text="By Last Name:" />
+      <TextField fx:id="searchTextField" layoutX="155.0" layoutY="246.0" prefHeight="25.0" prefWidth="246.0" text="e.g. Walker" />
+      <Button fx:id="searchButton" layoutX="424.0" layoutY="246.0" mnemonicParsing="false" onAction="#search" text="Search" />
+      <Button fx:id="searchAdvancedButton" layoutX="384.0" layoutY="279.0" mnemonicParsing="false" onAction="#searchAdvanced" text="Advanced Search" />
+      <Button fx:id="showDetailsButton" layoutX="20.0" layoutY="279.0" mnemonicParsing="false" onAction="#showDetails" text="Show Details" />
+      <Button fx:id="showDetailsInPlaceButton" layoutX="114.0" layoutY="279.0" mnemonicParsing="false" onAction="#showDetailsInPlace" text="Show Details In-Place" />
+      <TableView fx:id="staffTable" editable="true" layoutX="14.0" layoutY="310.0" prefHeight="269.0" prefWidth="487.0">
         <columns>
-          <TableColumn fx:id="staffId" prefWidth="75.0" text="ID" />
-          <TableColumn fx:id="staffLastname" prefWidth="75.0" text="Name" />
-            <TableColumn fx:id="staffCourse" prefWidth="75.0" text="Course" />
-            <TableColumn fx:id="staffAssignments" prefWidth="154.0" text="Assignments" />
+          <TableColumn fx:id="staffId" prefWidth="85.0" text="Id" />
+          <TableColumn fx:id="staffLastname" prefWidth="133.0" text="Lastname" />
+            <TableColumn fx:id="staffCourse" prefWidth="120.0" text="Course" />
+            <TableColumn fx:id="staffAssignments" prefWidth="148.0" text="Assignments" />
         </columns>
       </TableView>
-      <Button fx:id="searchAdvancedButton" layoutX="262.0" layoutY="266.0" mnemonicParsing="false" onAction="#searchAdvanced" text="Advanced Search" />
-      <Button fx:id="showDetailsButton" layoutX="12.0" layoutY="266.0" mnemonicParsing="false" onAction="#showDetails" text="Show Details" />
-      <Button fx:id="showDetailsInPlaceButton" layoutX="100.0" layoutY="266.0" mnemonicParsing="false" onAction="#showDetailsInPlace" text="Show Details In-Place" />
     </children>
 </AnchorPane>
